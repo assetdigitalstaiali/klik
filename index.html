@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STAI Ali bin Abi Thalib</title>
+    <title>STAI Ali bin Abi Thalib Surabaya</title>
     <meta name="description" content="Jl. Sidotopo Kidul 51, Surabaya">
 
     <!-- --- OGP (OPEN GRAPH) METADATA --- -->
     <!-- Ini yang membuat preview cantik saat link dikirim di WA/FB -->
-    <meta property="og:title" content="STAI Ali bin Abi Thalib">
+    <meta property="og:title" content="STAI Ali bin Abi Thalib Surabaya">
     <meta property="og:description" content="Jl. Sidotopo Kidul 51, Surabaya">
     <meta property="og:url" content="https://medsos.stai-ali.ac.id">
-    <!-- Tetap gunakan URL eksternal untuk preview, tapi fallback di sisi UI pakai logo.png -->
     <meta property="og:image" content="https://library.stai-ali.ac.id/lib/minigalnano/createthumb.php?filename=images/default/logo.png&width=350">
     <meta property="og:type" content="profile">
     
@@ -112,6 +111,11 @@
             border-radius: 50%;
             overflow: hidden;
             background-color: #eee;
+			
+            /* Flexbox untuk menengahkan teks inisial jika gambar gagal total */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .profile-img {
@@ -420,9 +424,9 @@
                      alt="STAI Ali Logo" 
                      class="profile-img"
                      id="mainProfileImg"
-                     onerror="fallbackLocal(this)">
+                     onerror="handleProfileError(this)">
             </div>
-            <h1 class="profile-title">STAI Ali bin Abi Thalib</h1>
+            <h1 class="profile-title">STAI Ali bin Abi Thalib Surabaya</h1>
             <p class="profile-bio">Jl. Sidotopo Kidul 51, Surabaya</p>
         </header>
 
@@ -431,7 +435,7 @@
             <!-- Section 1 -->
             <div class="section-header">Sosial Media</div>
 
-            <a href="https://instagram.com/stai_ali_surabaya" target="_blank" class="link-btn">
+            <a href="https://instagram.com/staialisurabaya" target="_blank" class="link-btn">
                 <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 <span class="btn-text">Instagram</span>
             </a>
@@ -465,9 +469,9 @@
             <a href="https://stai-ali.ac.id" target="_blank">
                 <img id="logoFooter" 
                      src="https://library.stai-ali.ac.id/lib/minigalnano/createthumb.php?filename=images/default/logo.png&width=350" 
-                     alt="Logo STAI Ali bin Abi Thalib"
+                     alt="Logo STAI Ali bin Abi Thalib Surabaya"
                      class="footer-logo"
-                     onerror="fallbackLocalFooter(this)">
+                     onerror="handleFooterError(this)">
             </a>
             <small style="opacity: 0.6; margin-top: 5px;">&copy; STAI Ali bin Abi Thalib Surabaya</small>
         </footer>
@@ -484,8 +488,8 @@
                 <div class="share-card">
                     <!-- Menggunakan Logo sebagai icon di card -->
                     <img src="https://library.stai-ali.ac.id/lib/minigalnano/createthumb.php?filename=images/default/logo.png&width=150" 
-                         class="share-card-logo" alt="Logo" onerror="fallbackLocal(this)">
-                    <div class="share-card-title">STAI Ali bin Abi Thalib</div>
+                         class="share-card-logo" alt="Logo" onerror="handleFooterError(this)">
+                    <div class="share-card-title">STAI Ali bin Abi Thalib Surabaya</div>
                     <div class="share-card-url">medsos.stai-ali.ac.id</div>
                 </div>
 
@@ -546,7 +550,7 @@
     <script>
         // --- KONFIGURASI SHARE ---
         const SHARE_URL = 'https://medsos.stai-ali.ac.id';
-        const SHARE_TITLE = 'Kunjungi Profil STAI Ali bin Abi Thalib';
+        const SHARE_TITLE = 'Kunjungi Profil STAI Ali bin Abi Thalib Surabaya';
 
         // --- 1. Fungsi Modal Share ---
         function openShareModal() {
@@ -614,16 +618,43 @@
             });
         }
 
-        // --- 4. Fallback gambar ke file lokal logo.png ---
-        function fallbackLocal(img) {
-            // Mencegah infinite loop jika logo.png juga error
-            img.onerror = null;
-            img.src = 'logo.png'; // Pastikan logo.png ada di direktori yang sama dengan file HTML ini
+        // --- 4. Offline Fallback Logic ---
+
+        function handleProfileError(img) {
+            // Cek flag dataset.triedLocal untuk mencegah infinite loop
+
+            if (!img.dataset.triedLocal) {
+                console.log('Gambar internet gagal, mencoba fallback ke logo.png (Local)...');
+                img.dataset.triedLocal = "true"; // Set flag bahwa kita sudah mencoba lokal
+                img.src = 'logo.png'; // Coba load file lokal
+            } else {
+                // Jika logo.png lokal juga tidak ditemukan
+                console.log('Fallback lokal gagal, menampilkan inisial...');
+                img.style.display = 'none'; // Sembunyikan tag img
+
+                // Styling Container induk untuk menampilkan teks inisial
+                const container = img.parentElement;
+                container.style.backgroundColor = '#19aa59';
+                container.style.color = 'white';
+                container.style.fontSize = '32px';
+                container.style.fontWeight = 'bold';
+                container.innerHTML = 'SA'; 
+            }
         }
 
-        function fallbackLocalFooter(img) {
-            img.onerror = null;
-            img.src = 'logo.png';
+        function handleFooterError(img) {
+            if (!img.dataset.triedLocal) {
+                img.dataset.triedLocal = "true";
+                img.src = 'logo.png';
+            } else {
+                img.style.display = 'none';
+                // Fallback teks jika logo footer juga gagal total
+                const textNode = document.createElement('span');
+                textNode.textContent = "STAI Ali bin Abi Thalib Surabaya";
+                textNode.style.fontWeight = "bold";
+                textNode.style.fontSize = "18px";
+                img.parentNode.appendChild(textNode);
+            }
         }
     </script>
 </body>
